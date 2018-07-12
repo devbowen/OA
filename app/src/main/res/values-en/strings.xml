@@ -21,4 +21,6 @@
     <string name="nav_employee">Employee</string>
     <string name="nav_ask_for_leave">Ask for leave</string>
     <string name="nav_personal_center">Personal center</string>
+    <string name="nav_notice">Notice</string>
+    <string name="nav_me">Me</string>
 </resources>

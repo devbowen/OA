@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.even.oa.employee.EmployeeFragment;
 import com.even.oa.fragment.HomeFragment;
 
+import static android.support.v4.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -89,16 +91,20 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         replaceFragment(new HomeFragment());
+                        toolbar.setTitle(R.string.nav_home);
                         break;
                     case R.id.nav_employee:
                         replaceFragment(new EmployeeFragment());
+                        toolbar.setTitle(R.string.nav_employee);
                         break;
                     case R.id.nav_leave:
+                        toolbar.setTitle(R.string.nav_ask_for_leave);
                         break;
                     case R.id.nav_notice:
+                        toolbar.setTitle(R.string.nav_notice);
                         break;
                     case R.id.nav_me:
-                        Toast.makeText(MainActivity.this, "me", Toast.LENGTH_SHORT).show();
+                        toolbar.setTitle(R.string.nav_me);
                         break;
                     default:
                         break;
@@ -109,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //夜间模式切换
         nightModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -144,6 +151,13 @@ public class MainActivity extends AppCompatActivity {
         item.setChecked(true);
     }
 
+    /**
+     * 两次确认退出
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -156,14 +170,26 @@ public class MainActivity extends AppCompatActivity {
     private void exit() {
         //先判断返回栈是否为空
         if (!getSupportFragmentManager().popBackStackImmediate()) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(getApplicationContext(),
-                        "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
+            //判断抽屉是否打开
+            if (!drawerLayout.isDrawerVisible(navigationView)) {
+                //判断两次返回时间间隔
+                if ((System.currentTimeMillis() - exitTime) > 2000) {
+                    Toast.makeText(getApplicationContext(),
+                            "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    finish();
+                    //System.exit(0);     //只能结束自己和自己的上一个Activity，不缓存彻底退出
+                }
             } else {
-                finish();
-                //System.exit(0);     //只能结束自己和自己的上一个Activity，不缓存彻底退出
+                drawerLayout.closeDrawers();
             }
         }
+    }
+
+    //锁定侧滑抽屉
+    public void lockDrawer(boolean enable) {
+        drawerLayout.setDrawerLockMode(enable ?
+                LOCK_MODE_LOCKED_CLOSED : DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 }

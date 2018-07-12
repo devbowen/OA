@@ -20,8 +20,11 @@
     <string name="nav_employee">员工</string>
     <string name="nav_ask_for_leave">请假</string>
     <string name="nav_personal_center">个人中心</string>
+    <string name="nav_notice">通知</string>
+    <string name="nav_me">我的</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
