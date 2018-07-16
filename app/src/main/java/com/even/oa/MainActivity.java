@@ -184,6 +184,9 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 drawerLayout.closeDrawers();
             }
+        } else {
+            lockDrawer(false);
+            setupToolbar(true);
         }
     }
 
@@ -191,5 +194,24 @@ public class MainActivity extends AppCompatActivity {
     public void lockDrawer(boolean enable) {
         drawerLayout.setDrawerLockMode(enable ?
                 LOCK_MODE_LOCKED_CLOSED : DrawerLayout.LOCK_MODE_UNLOCKED);
+    }
+
+    //设置Toolbar的返回箭头
+    public void setupToolbar(boolean enable) {
+        if (actionBarDrawerToggle == null) {
+            return;
+        }
+        if (enable) {
+            actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        } else {
+            actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+            actionBarDrawerToggle.setToolbarNavigationClickListener(v -> {
+                onBackPressed();
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                    lockDrawer(false);
+                }
+            });
+        }
     }
 }

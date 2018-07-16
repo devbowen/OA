@@ -75,13 +75,11 @@ public class EmployeeFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
-        setupToolbar();
+        //设置ToolBar
+        ((MainActivity) getActivity()).setupToolbar(false);
         //锁定侧滑
         ((MainActivity) getActivity()).lockDrawer(true);
     }
 
-    private void setupToolbar() {
-
-    }
 
 }

@@ -1,2 +1,2 @@
 
-An android client for OA system.
+:cloud: This is an android client for OA system.
