@@ -23,4 +23,8 @@
     <string name="nav_personal_center">Personal center</string>
     <string name="nav_notice">Notice</string>
     <string name="nav_me">Me</string>
+    <string name="employee_manage">Employee management</string>
+    <string name="employee_add">Employee addition</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

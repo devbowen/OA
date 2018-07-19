@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class EmployeeFragment extends Fragment implements View.OnClickListener {
     private CardView eeAddCard;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
+    private Toolbar toolbar;
 
     public EmployeeFragment() {
         // Required empty public constructor
@@ -42,8 +44,10 @@ public class EmployeeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_employee, container, false);
+        toolbar = getActivity().findViewById(R.id.toolbar);
         eeManageCard = view.findViewById(R.id.card_ee_manage);
         eeAddCard = view.findViewById(R.id.card_ee_add);
+
 
         eeManageCard.setOnClickListener(this);
         eeAddCard.setOnClickListener(this);
@@ -69,9 +73,11 @@ public class EmployeeFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.card_ee_manage:
                 replaceFragment(new ManageEmployeeFragment());
+                toolbar.setTitle(R.string.employee_manage);
                 break;
             case R.id.card_ee_add:
                 replaceFragment(new AddEmployeeFragment());
+                toolbar.setTitle(R.string.employee_add);
             default:
                 break;
         }

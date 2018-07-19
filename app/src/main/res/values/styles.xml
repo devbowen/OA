@@ -8,18 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-
+        <!--toolbar小汉堡颜色-->
         <item name="colorControlNormal">@color/white</item>
         <item name="android:colorControlNormal">@color/white</item>
 
-        <!--toolbar小汉堡样式-->
-        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
     </style>
-
-    <!--小汉堡颜色为白色，网上有种错误写法 parent="@style/Widget.AppCompat.DrawerArrowToggle"，会导致小汉堡变白色，小箭头却不变-->
-    <!--<style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">-->
-    <!--<item name="spinBars">true</item>-->
-    <!--<item name="color">@android:color/white</item>-->
-    <!--</style>-->
 
 </resources>

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
+    private String currentMenu;
 
     private FragmentManager fragmentManager;
     private SwitchCompat nightModeSwitch;
@@ -91,24 +92,25 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         replaceFragment(new HomeFragment());
-                        toolbar.setTitle(R.string.nav_home);
+                        currentMenu = getResources().getString(R.string.nav_home);
                         break;
                     case R.id.nav_employee:
                         replaceFragment(new EmployeeFragment());
-                        toolbar.setTitle(R.string.nav_employee);
+                        currentMenu = getResources().getString(R.string.nav_employee);
                         break;
                     case R.id.nav_leave:
-                        toolbar.setTitle(R.string.nav_ask_for_leave);
+                        currentMenu = getResources().getString(R.string.nav_ask_for_leave);
                         break;
                     case R.id.nav_notice:
-                        toolbar.setTitle(R.string.nav_notice);
+                        currentMenu = getResources().getString(R.string.nav_notice);
                         break;
                     case R.id.nav_me:
-                        toolbar.setTitle(R.string.nav_me);
+                        currentMenu = getResources().getString(R.string.nav_me);
                         break;
                     default:
                         break;
                 }
+                toolbar.setTitle(currentMenu);
                 itemChecked(item);
                 drawerLayout.closeDrawers();
                 return true;
@@ -187,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             lockDrawer(false);
             setupToolbar(true);
+            toolbar.setTitle(currentMenu);
         }
     }
 
@@ -214,4 +217,5 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
 }
